@@ -1,0 +1,3 @@
+#!/bin/bash
+
+chmod +x ./go-namesilo-ipv6-ddns && ./go-namesilo-ipv6-ddns
