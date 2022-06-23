@@ -22,10 +22,10 @@ git clone https://github.com/lankeo/go-namesilo-ipv6-dnns.git
 cd go-namesilo-ipv6-ddns
 go build .
 
-# 编译时可指定配置文件名称, 如：这里使用 `user-config.yml` 作为运行程序时的配置文件
+# 编译时可指定配置文件名称, 如：这里使用 user-config.yml 作为运行程序时的配置文件
 go build -ldflags "-X main.ConfigFile=user-config.yml" .
 
-# 编译时自定义程序名（之后运行使用改名称），Windows下需要加 `.exe` 后缀
+# 编译时自定义程序名（之后运行程序使用该名称），Windows下需要加 .exe 后缀
 go build -o xxx .
 go build -o xxx.exe .
 ```
