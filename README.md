@@ -1,36 +1,39 @@
-# Go Namesilo DDNS
+# Go Namesilo IPv6 DDNS
 动态解析本地 IPv6 地址到 namesilo.com 托管的域名
 
-### 特性
+## 特性
 - namesilo.com DNS 记录新增（批量新增）、删除、修改、批量查，已实现
 - 获取本地公共 IPv6 地址，已实现
 - 动态 IPv6 地址解析，已实现
 - 域名批量解析，已实现
 - 定时任务自动域名解析， 未实现
 
-### 安装
-#### 从源码编译
-**克隆源码**
+## 安装
+### 从源码编译
+##### 1. 克隆源码
 ```bash
 git clone https://github.com/lankeo/go-namesilo-ipv6-dnns.git
 ```
-**修改配置文件**
-
+##### 2. 修改配置文件
 详见配置
 
-**编译**
+##### 3. 编译
 ```
 cd go-namesilo-ipv6-ddns
 go build .
 
 # 编译时可指定配置文件名称, 如：这里使用 `user-config.yml` 作为运行程序时的配置文件
-go build go build -ldflags "-X main.ConfigFile=user-config.yml" .
+go build -ldflags "-X main.ConfigFile=user-config.yml" .
+
+# 编译时自定义程序名（之后运行使用改名称），Windows下需要加 `.exe` 后缀
+go build -o xxx .
+go build -o xxx.exe .
 ```
-#### 下载二进制文件
+### 下载二进制文件
 暂时未提供
 
-### 运行
-**Windows**
+## 运行
+##### Windows
 - 直接运行 `go-namesilo-ipv6-ddns.exe`
 
 - 从命令行运行
@@ -41,7 +44,7 @@ go build go build -ldflags "-X main.ConfigFile=user-config.yml" .
   go-namesilo-ipv6-ddns.exe -c xxx.yml
   ```
 - 双击运行提供的 `ddns-run.bat`
-**Linux**
+##### Linux
 - 从命令行运行
   ```bash
   ./go-namesilo-ipv6-ddns
@@ -55,7 +58,7 @@ go build go build -ldflags "-X main.ConfigFile=user-config.yml" .
   ./ddns-run
   ```
 
-### 配置
+## 配置
 程序根目录下 `config.yaml` 文件
 ```yaml
 # namesilo API 请求 url
@@ -101,8 +104,8 @@ records:
     distance: "0"
 ```
 
-### Example
-动态解析本地 IPv6 地址到 namesilo，所有的解析记录使用同一个本地 IPv6 地址
+## Example
+##### 1. 动态解析本地 IPv6 地址到 namesilo，所有的解析记录使用同一个本地 IPv6 地址
 
 ```go
   # `main.go` 文件
@@ -117,7 +120,7 @@ records:
 ```
 - ResourceRecords 为所有记录值列表
 
-根据配置文件 `config.yml` 中配置的 `records` 添加 DNS 解析记录，已存在则忽略
+##### 2. 根据配置文件 `config.yml` 中配置的 `records` 添加 DNS 解析记录，已存在则忽略
 ```go
   # `main.go` 文件
   package main
@@ -131,15 +134,15 @@ records:
   }
 ```
 > Tips: 程序默认会动态解析本地 IPv6 地址到 namesilo，并根据配置添加 DNS 解析记录
-### API
-#### Variables
+## API
+##### Variables
   - var IPs [ ]string
   - var TargetIP string
   - var ResourceRecords [ ]ResourceRecord
-#### func GetDNSRecords(result *DNSRecordsResult)
-#### type ResourceRecord
-  - #### func (rr *ResourceRecord) GetUpdateHost()
-  - #### func (rr *ResourceRecord) UpdateDNSRecord()
-  - #### func (rr *ResourceRecord) AddDNSRecord()
-  - #### func (rr *ResourceRecord) DeleteDNSRecord()
-  - #### func (rr *ResourceRecord) DeleteDNSRecord()
+##### func GetDNSRecords(result *DNSRecordsResult)
+##### type ResourceRecord
+  - ##### func (rr *ResourceRecord) GetUpdateHost()
+  - ##### func (rr *ResourceRecord) UpdateDNSRecord()
+  - ##### func (rr *ResourceRecord) AddDNSRecord()
+  - ##### func (rr *ResourceRecord) DeleteDNSRecord()
+  - ##### func (rr *ResourceRecord) DeleteDNSRecord()
