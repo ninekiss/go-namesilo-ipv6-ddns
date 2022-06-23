@@ -42,7 +42,7 @@ func InList(list []string, target string) bool {
 }
 
 func parseConfig(config *Config) {
-	file, err := ioutil.ReadFile("config.yml")
+	file, err := ioutil.ReadFile(ConfigFile)
 	if err != nil {
 		log.Fatal(`读取配置文件 "config.yml" 出错`)
 	}

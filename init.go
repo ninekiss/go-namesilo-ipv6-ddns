@@ -2,7 +2,14 @@ package main
 
 import (
 	"log"
+	"os"
 )
+
+func init() {
+	if len(os.Args) == 3 && os.Args[1] == "-c" && len(os.Args[2]) > 0 {
+		ConfigFile = os.Args[2]
+	}
+}
 
 func init() {
 	// 读取全局配置
