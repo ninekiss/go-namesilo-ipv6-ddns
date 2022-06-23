@@ -8,6 +8,53 @@
 - 域名批量解析，已实现
 - 定时任务自动域名解析， 未实现
 
+### 安装
+#### 从源码编译
+**克隆源码**
+```bash
+git clone https://github.com/lankeo/go-namesilo-ipv6-dnns.git
+```
+**修改配置文件**
+
+详见配置
+
+**编译**
+```
+cd go-namesilo-ipv6-ddns
+go build .
+
+# 编译时可指定配置文件名称, 如：这里使用 `user-config.yml` 作为运行程序时的配置文件
+go build go build -ldflags "-X main.ConfigFile=user-config.yml" .
+```
+#### 下载二进制文件
+暂时未提供
+
+### 运行
+**Windows**
+- 直接运行 `go-namesilo-ipv6-ddns.exe`
+
+- 从命令行运行
+  ```bash
+  go-namesilo-ipv6-ddns.exe
+
+  # -c xxx.yml 可以指定运行时的配置文件
+  go-namesilo-ipv6-ddns.exe -c xxx.yml
+  ```
+- 双击运行提供的 `ddns-run.bat`
+**Linux**
+- 从命令行运行
+  ```bash
+  ./go-namesilo-ipv6-ddns
+
+  # -c xxx.yml 可以指定运行时的配置文件
+  ./go-namesilo-ipv6-ddns -c xxx.yml
+  ```
+- 运行 `ddns-run` 脚本
+  ```bash
+  chomod +x ./ddns-run
+  ./ddns-run
+  ```
+
 ### 配置
 程序根目录下 `config.yaml` 文件
 ```yaml
