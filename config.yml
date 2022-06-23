@@ -1,0 +1,41 @@
+# namesilo API 请求 url
+url:
+  base: "https://www.namesilo.com/api/"
+  get: "dnsListRecords"
+  add: "dnsAddRecord"
+  update: "dnsUpdateRecord"
+  delete: "dnsDeleteRecord"
+
+# namesilo API 要求字段
+version: "1"
+type: "xml"
+
+# 账户设定的 key
+key: "dd911ac49199bb691795a"
+
+# 需要解析的域名（目前每次仅支持单个域名）
+domain: "example.com"
+
+# 需要添加的 DNS 解析记录（不添加请忽略）
+records:
+  -
+    # 记录值类型，值为 "A"、"AAAA"、"CNAME"、"MX"、"TXT"，"AAAA" 支持 IPv6
+    type: "AAAA"
+
+    # 主机名，修改时不用包含域名
+    host: "www" 
+
+    # 记录值，IPv4 或 IPv6 地址
+    value: "260e:3b7:3223:d50::1000"
+
+    # DNS记录在DNS服务器上的缓存时间，最小可设置为 3600 秒, 默认 7200 秒
+    ttl: "3600"
+
+    # 仅用于 MX 类型（如果未提供，则默认为 10），其他类型默认为 0
+    distance: "0"
+  -
+    type: "AAAA"
+    host: ""
+    value: "260e:3b7:3223:d50::1000"
+    ttl: "3600"
+    distance: "0"
