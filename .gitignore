@@ -1,3 +1,4 @@
 .vscode
 user-config.yml
 *.exe
+*.log

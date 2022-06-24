@@ -1,9 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
+
+func init() {
+	file, err := os.OpenFile("ddns.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+	if err != nil {
+		fmt.Println("日志文件初始化失败")
+	}
+	log.SetOutput(file)
+	log.Print("开始动态解析")
+}
 
 func init() {
 	if len(os.Args) == 3 && os.Args[1] == "-c" && len(os.Args[2]) > 0 {
