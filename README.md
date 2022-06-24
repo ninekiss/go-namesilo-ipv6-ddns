@@ -12,7 +12,7 @@
 ### 从源码编译
 ##### 1. 克隆源码
 ```bash
-git clone https://github.com/lankeo/go-namesilo-ipv6-dnns.git
+git clone https://github.com/lankeo/go-namesilo-ipv6-ddns.git
 ```
 ##### 2. 修改配置文件
 详见配置
