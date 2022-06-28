@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/xml"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -41,7 +42,7 @@ func GetDNSRecords(result *DNSRecordsResult) {
 		log.Fatal(err)
 	}
 
-	result.Reply.RecordFailedLog()
+	result.Reply.RecordListLog()
 }
 
 // 获取更新记录值时需要传的 host, 保持原 host 不变
@@ -93,9 +94,7 @@ func (rr *ResourceRecord) UpdateDNSRecord() {
 		log.Fatal(err)
 	}
 
-	result.Reply.RecordFailedLog()
-
-	result.RecordSuccessLog(rr.Value, "Update")
+	result.RecordOperateLog(rr, "Update")
 }
 
 // 添加 DNS 记录
@@ -138,9 +137,7 @@ func (rr *ResourceRecord) AddDNSRecord() {
 		log.Fatal(err)
 	}
 
-	result.Reply.RecordFailedLog()
-
-	result.RecordSuccessLog(rr.Value, "Add")
+	result.RecordOperateLog(rr, "Add")
 }
 
 // 删除 DNS 记录
@@ -180,9 +177,7 @@ func (rr *ResourceRecord) DeleteDNSRecord() {
 		log.Fatal(err)
 	}
 
-	result.Reply.RecordFailedLog()
-
-	result.RecordSuccessLog(rr.Value, "Delete")
+	result.RecordOperateLog(rr, "Delete")
 }
 
 // 动态解析本地 IPv6 地址到 namesilo
@@ -192,6 +187,7 @@ func (rr *ResourceRecord) LocalPublicIPv6DDNS() {
 		// 记录值已是最新 ip
 		rr.RecordIsLatestLog()
 	} else {
+		fmt.Println(rr)
 		// 更新记录值
 		rr.Value = TargetIP
 		rr.UpdateDNSRecord()
