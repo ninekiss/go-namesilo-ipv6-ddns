@@ -35,7 +35,7 @@ func init() {
 
 	// 读取记录值缓存
 	content, err := ioutil.ReadFile("catch.gnd4")
-	if err != nil {
+	if err != nil && content != nil {
 		log.Println("读取缓存失败，将重新获取")
 	}
 	for _, cacheValue := range strings.Split(string(content), ",") {
