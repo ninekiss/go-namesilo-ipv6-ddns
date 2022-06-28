@@ -19,7 +19,7 @@ func main() {
 	// InitAddDNSRecord()
 
 	if CacheRecordValues != nil {
-		err := ioutil.WriteFile("catch.gnd4", []byte(strings.Join(CacheRecordValues, ",")), 0644)
+		err := ioutil.WriteFile("cache.gnd4", []byte(strings.Join(CacheRecordValues, ",")), 0644)
 		if err != nil {
 			log.Println("写入记录值缓存失败")
 		}

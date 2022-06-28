@@ -34,7 +34,7 @@ func init() {
 	TargetIP = IPs[0]
 
 	// 读取记录值缓存
-	content, err := ioutil.ReadFile("catch.gnd4")
+	content, err := ioutil.ReadFile("cache.gnd4")
 	if err != nil && content != nil {
 		log.Println("读取缓存失败，将重新获取")
 	}
