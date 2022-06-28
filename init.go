@@ -53,7 +53,7 @@ func init() {
 
 func init() {
 	content, err := ioutil.ReadFile("error.gnd4")
-	if err != nil {
+	if err != nil && content != nil {
 		log.Println("读取错误文件失败")
 	}
 
