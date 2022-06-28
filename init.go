@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 )
 
 func init() {
@@ -31,7 +33,36 @@ func init() {
 	// 将本地公网 IPv6 地址中的第一个设置为要解析的目标 IP
 	TargetIP = IPs[0]
 
-	result := &DNSRecordsResult{}
-	GetDNSRecords(result)
-	ResourceRecords = result.Reply.ResourceRecords
+	// 读取记录值缓存
+	content, err := ioutil.ReadFile("catch.gnd4")
+	if err != nil {
+		log.Println("读取缓存失败，将重新获取")
+	}
+	for _, cacheValue := range strings.Split(string(content), ",") {
+		if isLatest := InList(IPs, cacheValue); isLatest {
+			log.Printf("【获取缓存记录值】记录值 %s 为最新, 无需更新\n", cacheValue)
+		} else {
+			log.Println("缓存记录值已失效, 重新获取", cacheValue)
+			result := &DNSRecordsResult{}
+			GetDNSRecords(result)
+			ResourceRecords = result.Reply.ResourceRecords
+			break
+		}
+	}
+}
+
+func init() {
+	content, err := ioutil.ReadFile("error.gnd4")
+	if err != nil {
+		log.Println("读取错误文件失败")
+	}
+
+	for _, errorRecordId := range strings.Split(string(content), "\n") {
+		if len(errorRecordId) > 0 {
+			rr := ResourceRecord{
+				RecordId: errorRecordId,
+			}
+			rr.DeleteDNSRecord()
+		}
+	}
 }
