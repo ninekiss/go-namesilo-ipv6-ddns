@@ -44,7 +44,8 @@ go build -o xxx.exe .
 
 [ddns.rar](https://github.com/ninekiss/go-namesilo-ipv6-ddns/releases/download/v0.0.1/ddns.rar)
 
-#### 2. 解压后修改配置文件 `config.ymal`，然后运行 `ddns.exe`
+#### 2. 运行
+解压后修改配置文件 `config.ymal`，然后运行 `ddns.exe`
 
 ## 运行
 
